@@ -17,7 +17,7 @@
 \newcommand{\Coord}{\mathrm{Coord}}
 \newcommand{\Conjunct}{\mathrm{Conjunct}}
 \newcommand{\ATB}{\mathrm{ATB}}
-\newcommand{\SameRole}{\mathrm{SameRole}}
+\newcommand{\ParallelGap}{\mathrm{ParallelGap}}
 
 \begin{document}
 \fragmenthead
@@ -58,13 +58,16 @@ relations:
 \ea
 $\Coord(c)$: $c$ is a coordinate construction.\\
 $\Conjunct(c,k)$: $k$ is a conjunct daughter of coordinate construction $c$.\\
-$\SameRole(z_1,z_2)$: vacancies $z_1$ and $z_2$ bear the same extraction role.
+$\ParallelGap(z_1,z_2)$: vacancies $z_1$ and $z_2$ are syntactically parallel.
 \z
 
 The last predicate is a deliberate pressure point. For NP extraction, it might
 mean that both vacancies are complements of comparable lexical heads, or that
-both are licensed by the same extracted prenucleus NP. The draft leaves that
-choice open.
+both are linked to the same extracted prenucleus NP by the same syntactic
+relation. It is not a semantic or thematic role predicate. If that extra
+condition cannot be reduced to syntactic relations such as function-labelled
+dominance plus a shared prenucleus relation, the fragment has located a real
+bridge problem rather than solved it.
 
 \section*{3.~Specification}
 
@@ -114,9 +117,9 @@ $\begin{aligned}
 & \quad [\Conjunct(c,k_1) \wedge \Conjunct(c,k_2) \wedge
     k_1 \dm z_1 \wedge k_2 \dm z_2 \wedge {} \\
 & \qquad \NPVac(z_1) \wedge \NPVac(z_2)
-    \Rightarrow \SameRole(z_1,z_2)].
+    \Rightarrow \ParallelGap(z_1,z_2)].
 \end{aligned}$\\
-\gloss{all conjuncts contain NP vacancies, and those vacancies are role-matched}
+\gloss{all conjuncts contain NP vacancies, and those vacancies are syntactically parallel}
 \z
 
 \section*{4.~Worked instance}
@@ -127,7 +130,8 @@ complex \mention{sent back}; the second has an NP vacancy as complement of
 \mention{for}. Each conjunct therefore contains an NP-bindable domain, and
 the coordinate satisfies the weak $\ATB$ condition. If the two missing NPs are
 both linked to the same prenucleus NP \mention{those}, they also satisfy the
-intended $\SameRole$ condition.
+intended $\ParallelGap$ condition. This is a syntactic bridge condition, not a
+claim that the two gaps have the same semantic role.
 
 In \mention{Those, I either paid the bill or sent back}, the first conjunct
 has no NP vacancy corresponding to \mention{those}. It therefore fails
@@ -137,9 +141,12 @@ conjunct.
 \section*{5.~Open questions}
 
 \begin{enumerate}[label=(\alph*),leftmargin=2em,itemsep=0.25em]
-  \item $\SameRole$ is doing real work. If it cannot be reduced to ordinary
+  \item $\ParallelGap$ is doing real work. If it cannot be reduced to ordinary
         function-labelled dominance plus the shared prenucleus relation, the
         fragment has merely hidden a SLASH-like dependency under a new name.
+  \item Semantic or thematic role matching is deliberately absent. If ATB
+        requires such a condition, it needs a separate interface predicate with
+        its own warrant.
   \item The formula needs a sharper account of coordination structure:
         binary vs.\ flat coordination, markers such as \mention{either} and
         \mention{or}, and possible non-constituent coordination.

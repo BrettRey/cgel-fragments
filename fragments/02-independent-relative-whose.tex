@@ -18,7 +18,10 @@
 \newcommand{\Root}{\mathrm{Root}}
 \newcommand{\NPBindable}{\mathrm{NPBindable}}
 \newcommand{\RelWhose}{\mathrm{RelWhose}}
-\newcommand{\PossRec}{\mathrm{PossessumRecoverable}}
+\newcommand{\PossRec}{\mathrm{PossRec}}
+\newcommand{\SynWhoseLink}{\mathrm{SynWhoseLink}}
+\newcommand{\SynIndRelWhose}{\mathrm{SynWhoseCl}}
+\newcommand{\LicensedIndRelWhose}{\mathrm{LicWhoseCl}}
 
 \begin{document}
 \fragmenthead
@@ -65,7 +68,9 @@ $\Bridge(x,y) \defas \Hd(x,y) \vee \Cmp(x,y)$\\
 We add $\RelWhose(w)$ for a lexical relative-genitive \mention{whose} node and
 $\PossRec(w)$ for the discourse condition that the missing possessum is
 recoverable. The second predicate is not syntactic; it marks the point where
-this construction is known to need information-structural licensing.
+this construction is known to need information-structural licensing. The tree
+condition below is stated without $\PossRec$; a separate licensed-use condition
+adds that bridge explicitly.
 
 \section*{3.~Specification}
 
@@ -129,17 +134,35 @@ $\begin{aligned}
 \gloss{$r$ roots a bridge-linked constituent containing an NP vacancy}
 \z
 
-For independent relative \mention{whose}, the draft adds a condition on the
-relative clause:
+For independent relative \mention{whose}, first state the syntactic link:
 
 \ea
 $\begin{aligned}
-\mathrm{IndRelWhoseClause}(c) \defas {} & \Cl(c) \wedge
-  (\exists w)(\exists r)[\RelWhose(w) \wedge c \dm w \wedge c \dm r \\
-& \qquad {} \wedge \NPBindable(r) \wedge \PossRec(w)].
+\SynWhoseLink(c,w,r) \defas {} & \Cl(c) \wedge \RelWhose(w)
+  \wedge c \dm w \wedge c \dm r \wedge \NPBindable(r).
 \end{aligned}$\\
-\gloss{a relative clause containing independent \mention{whose} and a bindable nucleus}
+\gloss{a clause, a relative-genitive \mention{whose}, and a bindable nucleus}
 \z
+
+\ea
+$\SynIndRelWhose(c) \defas
+  (\exists w)(\exists r)[\SynWhoseLink(c,w,r)]$\\
+\gloss{a syntactic independent-relative-\mention{whose} configuration}
+\z
+
+A licensed use adds a discourse bridge:
+
+\ea
+$\begin{aligned}
+\LicensedIndRelWhose(c) \defas {} &
+  (\exists w)(\exists r)[\SynWhoseLink(c,w,r) \wedge \PossRec(w)].
+\end{aligned}$\\
+\gloss{a syntactic configuration plus recoverability of the missing possessum}
+\z
+
+The last definition is not a tree-only predicate. It is an interface claim:
+$\PossRec(w)$ has to be warranted independently by contrastive parallelism,
+deictic anchoring, structural anchoring, or some other discourse condition.
 
 \section*{4.~Worked instance}
 
@@ -151,7 +174,8 @@ $\PossRec(w)$ is licensed by contrastive parallelism.
 
 The syntactic part then asks whether the nucleus rooted at $r$ contains a
 bridge-linked NP vacancy. If it does, $r$ satisfies $\NPBindable(r)$ and the
-relative clause satisfies $\mathrm{IndRelWhoseClause}(c)$. The formula
+relative clause satisfies $\SynIndRelWhose(c)$. A separate bridge claim,
+$\PossRec(w)$, is warranted here by contrastive parallelism. The formula
 therefore keeps two claims apart: the structural possibility of a
 relative-genitive dependency, and the pragmatic recoverability of the
 possessum.
@@ -166,8 +190,8 @@ possessum.
         rather than by a distant vacancy in the nucleus.
   \item $\PossRec$ is a placeholder for discourse licensing, especially
         contrastive parallelism, deictic anchoring, and structural anchoring.
-        The syntax fragment should say where that condition attaches, but not
-        pretend that it is a tree-only predicate.
+        It belongs in $\LicensedIndRelWhose$, not in the syntactic predicate
+        $\SynIndRelWhose$.
   \item CGEL page references are available in the separate \mention{whose}
         project but should be rechecked against the book before citation.
 \end{enumerate}
