@@ -15,3 +15,9 @@ Append-only record of project decisions. Format: `YYYY-MM-DD — Decision. Reaso
 2026-05-07 — First three pilot fragments drafted: fused determiner-heads, independent relative *whose*, and Across-the-Board extraction. Reason: they test three different pressure points in the logic-on-trees idiom: local category/function configuration, bridge-linked unbounded dependency plus discourse licensing, and the coordination residue that Pullum explicitly flags as hard for a SLASH-free treatment.
 
 2026-05-07 — Public GitHub repo and Pages site created at `BrettRey/cgel-fragments` and `https://brettrey.github.io/cgel-fragments/`. Reason: Pages can serve the handout PDFs directly from `docs/fragments/`, making the living-fragment format immediately testable.
+
+2026-05-07 — Fragment 1 terminology corrected from determinative-category framing to fused determiner-heads. Reason: *determiner* is a function, not the category *determinative*; the syntactic filler is usually a DP and may also be a genitive NP, so the fragment must describe the fused function rather than implying a bare determinative in fused-head function.
+
+2026-05-07 — Field-separation hygiene adopted across the fragments. Reason: syntactic tree predicates, semantic predicates, discourse conditions, and interface bridges must be kept explicit; a semanticist can use syntactic categories and a syntactician can use semantic categories, but bridge principles need warrants rather than silent slippage.
+
+2026-05-07 — Fragment 3 coordination terminology corrected to CGEL terms. Reason: syntax has coordinations as a category, coordinates as functions, and coordinators as a category in Marker function; the marker is a dependent inside the final Coordinate, not a semantic "conjunct" or a direct dependent of the coordination as a whole.
