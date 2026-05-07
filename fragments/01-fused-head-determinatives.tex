@@ -1,0 +1,128 @@
+% !TEX TS-program = xelatex
+
+\documentclass[11pt]{article}
+
+\input{../shared/preamble.tex}
+
+\renewcommand{\fragmentnumber}{Fragment 1}
+\renewcommand{\fragmenttitle}{Fused-head determinatives}
+\renewcommand{\fragmentdate}{2026-05-07}
+
+\newcommand{\Dtr}{\Cat{Dtr}}
+\newcommand{\Fused}{\mathrm{Fused}}
+\newcommand{\DHeadNP}{\mathrm{DHeadNP}}
+\newcommand{\CanonicalNomNP}{\mathrm{CanonicalNomNP}}
+
+\begin{document}
+\fragmenthead
+
+\noindent
+This fragment tests the local end of the project: can a CGEL-style category /
+function distinction be stated as a small constraint on labelled trees? The
+target is the familiar contrast between an NP with a separate nominal head and
+an NP in which a determinative supplies the head-like material itself.
+
+\section*{1.~Phenomenon}
+
+CGEL treats examples such as \mention{three}, \mention{some}, and
+\mention{many} in independent NP use as cases where a determinative is not
+followed by an overt nominal head.
+
+\ea
+\ex \textit{Pat invited two students; I invited three.}
+\ex \textit{Some of the reports were late, but many arrived on time.}
+\ex \textit{These are useful; those are defective.}
+\z
+
+The descriptive problem is small but useful. In \mention{two students}, the
+determinative fills the Det function and the nominal fills Head. In
+\mention{three}, a single determinative item projects the substantive NP by
+itself. A fragment should therefore distinguish ordinary Det-plus-Head NPs
+from determinative-headed NPs without collapsing category and function.
+
+\section*{2.~Vocabulary}
+
+Use the shared relations $\imdom$ and $\dm$, and the function relations
+$\Hd$ and $\Det$. Add one local lexical-category predicate:
+
+\ea
+$\Dtr(x)$: $x$ is a determinative-category node.
+\z
+
+For this draft, $\Fused(d,n)$ is a bookkeeping predicate saying that the
+determinative node $d$ inherits whatever interpretation would ordinarily be
+supplied by the missing nominal material in NP $n$. The point is not yet to
+formalise recoverability; it is to isolate the tree configuration that calls
+for it.
+
+\section*{3.~Specification}
+
+An ordinary NP with a separate nominal head can be characterised as follows:
+
+\ea
+$\begin{aligned}
+\CanonicalNomNP(n) \defas {} & \NP(n) \wedge
+  (\exists h)[n \imdom h \wedge \Hd(n,h) \wedge \Nom(h)].
+\end{aligned}$\\
+\gloss{an NP whose Head daughter is nominal}
+\z
+
+The fused-head determinative configuration is the corresponding case where
+the Head daughter is determinative and no separate nominal Head daughter is
+present:
+
+\ea
+$\begin{aligned}
+\DHeadNP(n) \defas {} & \NP(n) \wedge
+  (\exists d)[n \imdom d \wedge \Hd(n,d) \wedge \Dtr(d) \wedge \Fused(d,n)] \\
+& {} \wedge
+  \neg(\exists h)[n \imdom h \wedge \Hd(n,h) \wedge \Nom(h)].
+\end{aligned}$\\
+\gloss{an NP headed by a determinative rather than by an overt nominal}
+\z
+
+For simple cases such as \mention{three}, this is a first-order local
+definition. Partitive cases add one more daughter:
+
+\ea
+$\begin{aligned}
+\mathrm{PartitiveDHeadNP}(n) \defas {} & \DHeadNP(n) \wedge
+  (\exists p)[n \imdom p \wedge \Cmp(n,p) \wedge \PP(p)].
+\end{aligned}$\\
+\gloss{a determinative-headed NP with an \mention{of}-PP complement}
+\z
+
+Nothing in the formula says that determinatives are nouns, pronouns, or a
+separate primary category. It says only that this tree has a determinative
+node in Head function.
+
+\section*{4.~Worked instance}
+
+Take \mention{I invited three}. Let $n$ be the object NP and $d$ the lexical
+node \mention{three}. In the intended tree, $n \imdom d$, $\Hd(n,d)$, and
+$\Dtr(d)$. There is no daughter $h$ such that $\Hd(n,h)$ and $\Nom(h)$.
+Therefore $n$ satisfies $\DHeadNP(n)$.
+
+The contrast with \mention{two students} is immediate. In that NP, the
+determinative \mention{two} fills $\Det(n,d)$, while the nominal
+\mention{students} fills $\Hd(n,h)$. That NP satisfies $\CanonicalNomNP(n)$,
+not $\DHeadNP(n)$.
+
+\section*{5.~Open questions}
+
+\begin{enumerate}[label=(\alph*),leftmargin=2em,itemsep=0.25em]
+  \item This draft treats $\Fused$ as primitive. A fuller fragment needs a
+        recoverability condition for the missing nominal contribution, or a
+        decision that the simple cases should be analysed as ordinary
+        determinative heads without fusion.
+  \item Partitives probably require tighter treatment of the \mention{of}-PP:
+        it is not just any complement PP.
+  \item The defective articles \mention{the} and \mention{a} should be kept
+        outside the productive simple-head generalisation unless their special
+        status is explicitly modelled.
+  \item CGEL page references and the Payne--Huddleston--Pullum treatment of
+        fused functions need to be checked before this becomes a citable
+        fragment.
+\end{enumerate}
+
+\end{document}

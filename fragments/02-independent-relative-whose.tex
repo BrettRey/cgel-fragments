@@ -1,0 +1,169 @@
+% !TEX TS-program = xelatex
+
+\documentclass[11pt]{article}
+
+\input{../shared/preamble.tex}
+
+\renewcommand{\fragmentnumber}{Fragment 2}
+\renewcommand{\fragmenttitle}{Independent relative \mention{whose}}
+\renewcommand{\fragmentdate}{2026-05-07}
+
+\newcommand{\Vacancy}{\mathrm{Vacancy}}
+\newcommand{\NPVac}{\mathrm{NPVacancy}}
+\newcommand{\Bridge}{\mathrm{Bridge}}
+\newcommand{\DomOrdered}{\mathrm{DomOrdered}}
+\newcommand{\DomContinuous}{\mathrm{DomContinuous}}
+\newcommand{\DomChain}{\mathrm{DomChain}}
+\newcommand{\BridgeLinked}{\mathrm{BridgeLinked}}
+\newcommand{\Root}{\mathrm{Root}}
+\newcommand{\NPBindable}{\mathrm{NPBindable}}
+\newcommand{\RelWhose}{\mathrm{RelWhose}}
+\newcommand{\PossRec}{\mathrm{PossessumRecoverable}}
+
+\begin{document}
+\fragmenthead
+
+\noindent
+This fragment tests whether Pullum's bridge-linked dominance-chain machinery
+can be used for an empirically delicate CGEL construction: relative
+\mention{whose} without an overt following possessum.
+
+\section*{1.~Phenomenon}
+
+Independent relative \mention{whose} is the relative-genitive construction in
+which \mention{whose} appears without a following noun:
+
+\ea
+\ex \textit{I was going to visit Lucy, a friend of whose had told us of the accident.}
+\ex \textit{Norway, whose standard of living is the envy of the world, has thicker kids than Singapore, whose isn't.}
+\ex \textit{The man whose these are hath gotten me with child.}
+\z
+
+The construction is rare and pragmatically constrained. The syntactic task for
+this fragment is narrower: state the tree condition under which a relative
+clause contains a relative-genitive phrase whose possessum is not overtly
+realised, and connect that phrase to a vacancy or predicative gap in the
+relative-clause nucleus.
+
+\section*{2.~Vocabulary}
+
+The definitions below adapt Pullum's handout notation. Immediate dominance is
+$\imdom$; dominance is $\dm$. The relation $\Bridge(x,y)$ is initially limited
+to Head and Complement links:
+
+\ea
+$\Bridge(x,y) \defas \Hd(x,y) \vee \Cmp(x,y)$\\
+\gloss{$y$ is linked to $x$ by a bridge-preserving function}
+\z
+
+We add $\RelWhose(w)$ for a lexical relative-genitive \mention{whose} node and
+$\PossRec(w)$ for the discourse condition that the missing possessum is
+recoverable. The second predicate is not syntactic; it marks the point where
+this construction is known to need information-structural licensing.
+
+\section*{3.~Specification}
+
+Pullum's basic vacancy predicate can be stated as:
+
+\ea
+$\Vacancy(x) \defas \Phrasal(x) \wedge \neg(\exists y)[x \imdom y]$\\
+\gloss{a phrasal node with no children}
+\z
+
+\ea
+$\NPVac(x) \defas \Vacancy(x) \wedge \NP(x)$\\
+\gloss{an NP vacancy}
+\z
+
+The relevant chain definitions are:
+
+\ea
+$\begin{aligned}
+\DomOrdered(X) \defas {} &
+  (\forall x)(\forall y)[(X(x) \wedge X(y)) \Rightarrow
+    (x \dm y \vee y \dm x)].
+\end{aligned}$\\
+\gloss{all nodes in $X$ are ordered by dominance}
+\z
+
+\ea
+$\begin{aligned}
+\DomContinuous(X) \defas {} &
+  (\forall x)(\forall y)(\forall z)[(X(x) \wedge X(z) \wedge x \dm y
+    \wedge y \dm z) \Rightarrow X(y)].
+\end{aligned}$\\
+\gloss{$X$ contains the intervening nodes on its dominance path}
+\z
+
+\ea
+$\DomChain(X) \defas \DomOrdered(X) \wedge \DomContinuous(X)$\\
+\gloss{a dominance chain}
+\z
+
+\ea
+$\begin{aligned}
+\BridgeLinked(X) \defas {} & \DomChain(X) \wedge
+  (\forall x)(\forall y)[(X(x) \wedge X(y) \wedge x \imdom y)
+    \Rightarrow \Bridge(x,y)].
+\end{aligned}$\\
+\gloss{a dominance chain whose immediate links are bridge links}
+\z
+
+\ea
+$\Root(X,r) \defas (\forall x)[X(x) \Leftrightarrow r \dm x]$\\
+\gloss{$X$ is the set of nodes dominated by root $r$}
+\z
+
+\ea
+$\begin{aligned}
+\NPBindable(r) \defas {} &
+  (\exists X)[\Root(X,r) \wedge \BridgeLinked(X) \wedge
+    (\exists z)[X(z) \wedge \NPVac(z)]].
+\end{aligned}$\\
+\gloss{$r$ roots a bridge-linked constituent containing an NP vacancy}
+\z
+
+For independent relative \mention{whose}, the draft adds a condition on the
+relative clause:
+
+\ea
+$\begin{aligned}
+\mathrm{IndRelWhoseClause}(c) \defas {} & \Cl(c) \wedge
+  (\exists w)(\exists r)[\RelWhose(w) \wedge c \dm w \wedge c \dm r \\
+& \qquad {} \wedge \NPBindable(r) \wedge \PossRec(w)].
+\end{aligned}$\\
+\gloss{a relative clause containing independent \mention{whose} and a bindable nucleus}
+\z
+
+\section*{4.~Worked instance}
+
+In \mention{Singapore, whose isn't}, the relative clause contains a
+relative-genitive \mention{whose} and a nucleus with stranded auxiliary
+\mention{isn't}. The missing possessum is recoverable from the parallel
+antecedent \mention{Norway, whose standard of living is ...}. In this use,
+$\PossRec(w)$ is licensed by contrastive parallelism.
+
+The syntactic part then asks whether the nucleus rooted at $r$ contains a
+bridge-linked NP vacancy. If it does, $r$ satisfies $\NPBindable(r)$ and the
+relative clause satisfies $\mathrm{IndRelWhoseClause}(c)$. The formula
+therefore keeps two claims apart: the structural possibility of a
+relative-genitive dependency, and the pragmatic recoverability of the
+possessum.
+
+\section*{5.~Open questions}
+
+\begin{enumerate}[label=(\alph*),leftmargin=2em,itemsep=0.25em]
+  \item Some attested cases are predicative-complement cases rather than
+        simple NP-vacancy cases. Those may require a second vacancy type.
+  \item Oblique genitive examples such as \mention{a friend of whose} may be
+        locally licensed by the possessum noun inside the relative phrase,
+        rather than by a distant vacancy in the nucleus.
+  \item $\PossRec$ is a placeholder for discourse licensing, especially
+        contrastive parallelism, deictic anchoring, and structural anchoring.
+        The syntax fragment should say where that condition attaches, but not
+        pretend that it is a tree-only predicate.
+  \item CGEL page references are available in the separate \mention{whose}
+        project but should be rechecked against the book before citation.
+\end{enumerate}
+
+\end{document}

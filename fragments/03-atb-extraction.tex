@@ -1,0 +1,146 @@
+% !TEX TS-program = xelatex
+
+\documentclass[11pt]{article}
+
+\input{../shared/preamble.tex}
+
+\renewcommand{\fragmentnumber}{Fragment 3}
+\renewcommand{\fragmenttitle}{Across-the-board extraction}
+\renewcommand{\fragmentdate}{2026-05-07}
+
+\newcommand{\Vacancy}{\mathrm{Vacancy}}
+\newcommand{\NPVac}{\mathrm{NPVacancy}}
+\newcommand{\Bridge}{\mathrm{Bridge}}
+\newcommand{\BridgeLinked}{\mathrm{BridgeLinked}}
+\newcommand{\Root}{\mathrm{Root}}
+\newcommand{\NPBindable}{\mathrm{NPBindable}}
+\newcommand{\Coord}{\mathrm{Coord}}
+\newcommand{\Conjunct}{\mathrm{Conjunct}}
+\newcommand{\ATB}{\mathrm{ATB}}
+\newcommand{\SameRole}{\mathrm{SameRole}}
+
+\begin{document}
+\fragmenthead
+
+\noindent
+This fragment is a deliberate stress test. Pullum's handout shows how a
+SLASH-free, logic-on-trees treatment can describe ordinary unbounded
+dependencies, then flags Across-the-Board extraction as the hard residue where
+Gazdar's GPSG analysis is especially elegant.
+
+\section*{1.~Phenomenon}
+
+Across-the-Board extraction allows one preposed phrase to correspond to gaps
+inside each coordinate:
+
+\ea
+\ex \textit{Those, I either sent back or paid for.}
+\ex \ungram{\textit{Those, I either paid the bill or sent back.}}
+\ex \ungram{\textit{Those, I either sent back or paid the bill.}}
+\z
+
+The good case has matching gaps in both coordinates. The bad cases have only
+one gap: one coordinate is independently compatible with the extracted NP, but
+the other is not. The fragment asks whether this can be stated directly over
+trees, without reintroducing a SLASH-valued category.
+
+\section*{2.~Vocabulary}
+
+Reuse Pullum's vacancy and bindability machinery, but add coordination
+relations:
+
+\ea
+$\Coord(c)$: $c$ is a coordinate construction.\\
+$\Conjunct(c,k)$: $k$ is a conjunct daughter of coordinate construction $c$.\\
+$\SameRole(z_1,z_2)$: vacancies $z_1$ and $z_2$ bear the same extraction role.
+\z
+
+The last predicate is a deliberate pressure point. For NP extraction, it might
+mean that both vacancies are complements of comparable lexical heads, or that
+both are licensed by the same extracted prenucleus NP. The draft leaves that
+choice open.
+
+\section*{3.~Specification}
+
+Use the same basic vacancy definitions:
+
+\ea
+$\Vacancy(x) \defas \Phrasal(x) \wedge \neg(\exists y)[x \imdom y]$
+\z
+
+\ea
+$\NPVac(x) \defas \Vacancy(x) \wedge \NP(x)$
+\z
+
+Assume the Pullum-style definition of $\NPBindable(r)$: $r$ roots a
+bridge-linked dominance chain containing an NP vacancy. Then define a conjunct
+as NP-binding if it has such a root:
+
+\ea
+$\begin{aligned}
+\mathrm{ConjNPBindable}(k) \defas {} &
+  (\exists r)[k \dm r \wedge \NPBindable(r)].
+\end{aligned}$\\
+\gloss{conjunct $k$ contains an NP-bindable domain}
+\z
+
+The weak ATB condition says every conjunct must contain a bindable NP gap:
+
+\ea
+$\begin{aligned}
+\ATB(c) \defas {} & \Coord(c) \wedge
+  (\forall k)[\Conjunct(c,k) \Rightarrow \mathrm{ConjNPBindable}(k)].
+\end{aligned}$\\
+\gloss{all conjuncts contain an NP-bindable domain}
+\z
+
+That is not quite enough. It rules out the one-gap cases, but it does not yet
+guarantee that the gaps are parallel in the right way. A stronger condition
+quantifies over the actual vacancies:
+
+\ea
+$\begin{aligned}
+\mathrm{ATB}^{+}(c) \defas {} & \Coord(c) \wedge
+  (\forall k)[\Conjunct(c,k) \Rightarrow
+    (\exists z)[k \dm z \wedge \NPVac(z)]] \\
+& {} \wedge
+  (\forall k_1)(\forall k_2)(\forall z_1)(\forall z_2) \\
+& \quad [\Conjunct(c,k_1) \wedge \Conjunct(c,k_2) \wedge
+    k_1 \dm z_1 \wedge k_2 \dm z_2 \wedge {} \\
+& \qquad \NPVac(z_1) \wedge \NPVac(z_2)
+    \Rightarrow \SameRole(z_1,z_2)].
+\end{aligned}$\\
+\gloss{all conjuncts contain NP vacancies, and those vacancies are role-matched}
+\z
+
+\section*{4.~Worked instance}
+
+In \mention{Those, I either sent back or paid for}, the coordinate VP contains
+two conjuncts. The first has an NP vacancy as complement of the particle-verb
+complex \mention{sent back}; the second has an NP vacancy as complement of
+\mention{for}. Each conjunct therefore contains an NP-bindable domain, and
+the coordinate satisfies the weak $\ATB$ condition. If the two missing NPs are
+both linked to the same prenucleus NP \mention{those}, they also satisfy the
+intended $\SameRole$ condition.
+
+In \mention{Those, I either paid the bill or sent back}, the first conjunct
+has no NP vacancy corresponding to \mention{those}. It therefore fails
+$\ATB(c)$. The mirror-image example fails for the same reason in the second
+conjunct.
+
+\section*{5.~Open questions}
+
+\begin{enumerate}[label=(\alph*),leftmargin=2em,itemsep=0.25em]
+  \item $\SameRole$ is doing real work. If it cannot be reduced to ordinary
+        function-labelled dominance plus the shared prenucleus relation, the
+        fragment has merely hidden a SLASH-like dependency under a new name.
+  \item The formula needs a sharper account of coordination structure:
+        binary vs.\ flat coordination, markers such as \mention{either} and
+        \mention{or}, and possible non-constituent coordination.
+  \item The weak condition may overgenerate cases with accidental gaps that
+        are not jointly licensed by the same filler.
+  \item This should be compared directly with Gazdar's 1981 treatment before
+        being treated as a successful replacement.
+\end{enumerate}
+
+\end{document}
