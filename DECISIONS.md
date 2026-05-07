@@ -12,6 +12,6 @@ Append-only record of project decisions. Format: `YYYY-MM-DD — Decision. Reaso
 
 2026-05-07 — Authorship undecided. Brett may take this on solo, with Victor as the originator credited, or as a Brett+Victor collaboration. Reason: Victor flagged "limited resources"; Brett's "kicking the tires" stance leaves authorship open until feasibility is clearer.
 
-2026-05-07 — First three pilot fragments drafted: fused-head determinatives, independent relative *whose*, and Across-the-Board extraction. Reason: they test three different pressure points in the logic-on-trees idiom: local category/function configuration, bridge-linked unbounded dependency plus discourse licensing, and the coordination residue that Pullum explicitly flags as hard for a SLASH-free treatment.
+2026-05-07 — First three pilot fragments drafted: determiner-head fusion with determinatives, independent relative *whose*, and Across-the-Board extraction. Reason: they test three different pressure points in the logic-on-trees idiom: local category/function configuration, bridge-linked unbounded dependency plus discourse licensing, and the coordination residue that Pullum explicitly flags as hard for a SLASH-free treatment.
 
 2026-05-07 — Public GitHub repo and Pages site created at `BrettRey/cgel-fragments` and `https://brettrey.github.io/cgel-fragments/`. Reason: Pages can serve the handout PDFs directly from `docs/fragments/`, making the living-fragment format immediately testable.

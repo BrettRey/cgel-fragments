@@ -8,7 +8,7 @@
 - `shared/preamble.tex` — handout-style LaTeX preamble pulling in the portfolio house style.
 - `shared/macros.tex` — logic-on-trees notation: `⊲` (immediate dominance), `⊲*` (dominance), `Head`, `Comp`, `Mod`, `NP`, `VP`, `Phrasal`, `Vacancy`, etc.
 - `fragments/00-template.tex` — a stub fragment showing the five-section structure.
-- `fragments/01-fused-head-determinatives.tex` — local/category-function pilot.
+- `fragments/01-fused-head-determinatives.tex` — determiner-head fusion / category-function pilot.
 - `fragments/02-independent-relative-whose.tex` — bridge-linked dependency plus discourse-licensing pilot.
 - `fragments/03-atb-extraction.tex` — coordination stress-test pilot.
 - `Makefile` — builds individual fragments to `pdfs/`, copies to `docs/fragments/` for the site.
