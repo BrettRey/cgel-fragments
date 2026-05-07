@@ -14,8 +14,10 @@
 \newcommand{\BridgeLinked}{\mathrm{BridgeLinked}}
 \newcommand{\Root}{\mathrm{Root}}
 \newcommand{\NPBindable}{\mathrm{NPBindable}}
-\newcommand{\Coord}{\mathrm{Coord}}
-\newcommand{\Conjunct}{\mathrm{Conjunct}}
+\newcommand{\Coordination}{\Cat{Coordination}}
+\newcommand{\Coordinate}{\mathrm{Coordinate}}
+\newcommand{\Coordinator}{\Cat{Coordinator}}
+\newcommand{\CoordNPBindable}{\mathrm{CoordNPBindable}}
 \newcommand{\ATB}{\mathrm{ATB}}
 \newcommand{\ParallelGap}{\mathrm{ParallelGap}}
 
@@ -31,7 +33,7 @@ Gazdar's GPSG analysis is especially elegant.
 \section*{1.~Phenomenon}
 
 Across-the-Board extraction allows one preposed phrase to correspond to gaps
-inside each coordinate:
+inside each coordinate of a coordination:
 
 \ea
 \textit{Those, I either sent back or paid for.}
@@ -52,22 +54,30 @@ trees, without reintroducing a SLASH-valued category.
 
 \section*{2.~Vocabulary}
 
-Reuse Pullum's vacancy and bindability machinery, but add coordination
-relations:
+Reuse Pullum's vacancy and bindability machinery, but add CGEL-style
+coordination vocabulary:
 
 \ea
-$\Coord(c)$: $c$ is a coordinate construction.\\
-$\Conjunct(c,k)$: $k$ is a conjunct daughter of coordinate construction $c$.\\
+$\Coordination(c)$: $c$ is a coordination.\\
+$\Coordinate(c,k)$: $k$ fills Coordinate function in coordination $c$.\\
+$\Coordinator(m)$: $m$ is a coordinator.\\
+$\Mk(k,m)$: $m$ fills Marker function inside coordinate $k$.\\
 $\ParallelGap(z_1,z_2)$: vacancies $z_1$ and $z_2$ are syntactically parallel.
 \z
 
-The last predicate is a deliberate pressure point. For NP extraction, it might
-mean that both vacancies are complements of comparable lexical heads, or that
-both are linked to the same extracted prenucleus NP by the same syntactic
-relation. It is not a semantic or thematic role predicate. If that extra
-condition cannot be reduced to syntactic relations such as function-labelled
-dominance plus a shared prenucleus relation, the fragment has located a real
-bridge problem rather than solved it.
+A coordination may be unmarked, or the final Coordinate daughter may contain a
+coordinator in Marker function. The Marker is not a dependent of the
+coordination as a whole, and it is not itself a Coordinate. The ATB condition
+below quantifies over Coordinate daughters, not over Marker dependents inside
+them.
+
+The predicate $\ParallelGap$ is a deliberate pressure point. For NP extraction,
+it might mean that both vacancies are complements of comparable lexical heads,
+or that both are linked to the same extracted prenucleus NP by the same
+syntactic relation. It is not a semantic or thematic role predicate. If that
+extra condition cannot be reduced to syntactic relations such as
+function-labelled dominance plus a shared prenucleus relation, the fragment has
+located a real bridge problem rather than solved it.
 
 \section*{3.~Specification}
 
@@ -82,25 +92,26 @@ $\NPVac(x) \defas \Vacancy(x) \wedge \NP(x)$
 \z
 
 Assume the Pullum-style definition of $\NPBindable(r)$: $r$ roots a
-bridge-linked dominance chain containing an NP vacancy. Then define a conjunct
-as NP-binding if it has such a root:
+bridge-linked dominance chain containing an NP vacancy. Then define a
+Coordinate daughter as NP-binding if it has such a root:
 
 \ea
 $\begin{aligned}
-\mathrm{ConjNPBindable}(k) \defas {} &
+\CoordNPBindable(k) \defas {} &
   (\exists r)[k \dm r \wedge \NPBindable(r)].
 \end{aligned}$\\
-\gloss{conjunct $k$ contains an NP-bindable domain}
+\gloss{Coordinate daughter $k$ contains an NP-bindable domain}
 \z
 
-The weak ATB condition requires every conjunct to contain a bindable NP gap:
+The weak ATB condition requires every Coordinate daughter to contain a bindable
+NP gap:
 
 \ea
 $\begin{aligned}
-\ATB(c) \defas {} & \Coord(c) \wedge
-  (\forall k)[\Conjunct(c,k) \Rightarrow \mathrm{ConjNPBindable}(k)].
+\ATB(c) \defas {} & \Coordination(c) \wedge
+  (\forall k)[\Coordinate(c,k) \Rightarrow \CoordNPBindable(k)].
 \end{aligned}$\\
-\gloss{all conjuncts contain an NP-bindable domain}
+\gloss{all Coordinate daughters contain an NP-bindable domain}
 \z
 
 That is not quite enough. It rules out the one-gap cases, but it does not yet
@@ -109,34 +120,36 @@ quantifies over the actual vacancies:
 
 \ea
 $\begin{aligned}
-\mathrm{ATB}^{+}(c) \defas {} & \Coord(c) \wedge
-  (\forall k)[\Conjunct(c,k) \Rightarrow
+\mathrm{ATB}^{+}(c) \defas {} & \Coordination(c) \wedge
+  (\forall k)[\Coordinate(c,k) \Rightarrow
     (\exists z)[k \dm z \wedge \NPVac(z)]] \\
 & {} \wedge
   (\forall k_1)(\forall k_2)(\forall z_1)(\forall z_2) \\
-& \quad [\Conjunct(c,k_1) \wedge \Conjunct(c,k_2) \wedge
+& \quad [\Coordinate(c,k_1) \wedge \Coordinate(c,k_2) \wedge
     k_1 \dm z_1 \wedge k_2 \dm z_2 \wedge {} \\
 & \qquad \NPVac(z_1) \wedge \NPVac(z_2)
     \Rightarrow \ParallelGap(z_1,z_2)].
 \end{aligned}$\\
-\gloss{all conjuncts contain NP vacancies, and those vacancies are syntactically parallel}
+\gloss{all Coordinate daughters contain NP vacancies, and those vacancies are syntactically parallel}
 \z
 
 \section*{4.~Worked instance}
 
-In \mention{Those, I either sent back or paid for}, the coordinate VP contains
-two conjuncts. The first has an NP vacancy as complement of the particle-verb
-complex \mention{sent back}; the second has an NP vacancy as complement of
-\mention{for}. Each conjunct therefore contains an NP-bindable domain, and
-the coordinate satisfies the weak $\ATB$ condition. If the two missing NPs are
-both linked to the same prenucleus NP \mention{those}, they also satisfy the
-intended $\ParallelGap$ condition. This is a syntactic bridge condition, not a
-claim that the two gaps have the same semantic role.
+In \mention{Those, I either sent back or paid for}, the relevant coordination
+contains two VP coordinates. The first has an NP vacancy as complement of the
+particle-verb complex \mention{sent back}; the second has an NP vacancy as
+complement of \mention{for}. The coordinator \mention{or} is a Marker dependent
+inside the final Coordinate, not itself a Coordinate. Each Coordinate daughter
+therefore contains an NP-bindable domain, and the coordination satisfies the
+weak $\ATB$ condition. If the two missing NPs are both linked to the same
+prenucleus NP \mention{those}, they also satisfy the intended $\ParallelGap$
+condition. This is a syntactic bridge condition, not a claim that the two gaps
+have the same semantic role.
 
-In \mention{Those, I either paid the bill or sent back}, the first conjunct
-has no NP vacancy corresponding to \mention{those}. It therefore fails
+In \mention{Those, I either paid the bill or sent back}, the first Coordinate
+daughter has no NP vacancy corresponding to \mention{those}. It therefore fails
 $\ATB(c)$. The mirror-image example fails for the same reason in the second
-conjunct.
+Coordinate daughter.
 
 \section*{5.~Open questions}
 
@@ -148,10 +161,11 @@ conjunct.
         requires such a condition, it needs a separate interface predicate with
         its own warrant.
   \item The formula needs a sharper account of coordination structure:
-        binary vs.\ flat coordination, markers such as \mention{either} and
-        \mention{or}, and possible non-constituent coordination.
+        binary vs.\ flat coordination, unmarked coordinations, coordinators in
+        Marker function inside the final Coordinate, markers such as
+        \mention{either}, and possible non-constituent coordination.
   \item The weak condition may overgenerate cases with accidental gaps that
-        are not jointly licensed by the same filler.
+        are not jointly linked to the same prenucleus NP.
   \item This should be compared directly with Gazdar's 1981 treatment before
         being treated as a successful replacement.
 \end{enumerate}
