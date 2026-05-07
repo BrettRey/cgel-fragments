@@ -37,9 +37,9 @@ XeLaTeX is required (Charis SIL via the portfolio house style).
 ## Adding a new fragment
 
 ```bash
-cp fragments/00-template.tex fragments/01-fused-head.tex
+cp fragments/00-template.tex fragments/01-fused-determiner-heads.tex
 # edit \fragmentnumber, \fragmenttitle, \fragmentdate, body
-make 01-fused-head
+make 01-fused-determiner-heads
 ```
 
 Then add a list entry to `docs/index.html`.

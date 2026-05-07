@@ -49,7 +49,7 @@ cite Rogers, Thatcher & Wright, or Doner.
 ## Build
 
 ```bash
-make 01-fused-head      # build fragments/01-fused-head.tex into pdfs/01-fused-head.pdf
+make 01-fused-determiner-heads
 make                    # build all fragments
 make site               # copy PDFs into docs/fragments/ for GitHub Pages
 ```
