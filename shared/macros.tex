@@ -1,0 +1,47 @@
+% CGEL Fragments — shared macros for logic on trees
+%
+% Notation conventions follow the formal-grammar tradition (Rogers, Pullum,
+% GKPS): ⊲ is immediate dominance, ⊲* is dominance, ≺ is precedence.
+% Grammatical functions (Head, Comp, Mod, …) are typed binary relations
+% over labelled tree nodes.
+
+%% Tree relations -----------------------------------------------------------
+\newcommand{\imdom}{\mathrel{\lhd}}            % x ⊲ y : x immediately dominates y
+\newcommand{\dm}{\mathrel{\lhd^{*}}}           % x ⊲* y : x dominates y (refl. trans. closure)
+\newcommand{\imprec}{\mathrel{\prec}}          % x ≺ y : x immediately precedes y
+\newcommand{\prc}{\mathrel{\prec^{*}}}         % x ≺* y : x precedes y
+
+%% Function relations (CGEL-style) -----------------------------------------
+\newcommand{\Hd}{\mathrm{Head}}
+\newcommand{\Cmp}{\mathrm{Comp}}
+\newcommand{\Md}{\mathrm{Mod}}
+\newcommand{\Adj}{\mathrm{Adjunct}}
+\newcommand{\Sbj}{\mathrm{Subj}}
+\newcommand{\Mk}{\mathrm{Mark}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\PreNuc}{\mathrm{PreNuc}}
+\newcommand{\Nuc}{\mathrm{Nuc}}
+\newcommand{\Det}{\mathrm{Det}}            % determiner function
+
+%% Category predicates ------------------------------------------------------
+% Unary predicates over nodes; small caps in display.
+\newcommand{\Cat}[1]{\mathrm{#1}}
+\newcommand{\NP}{\Cat{NP}}
+\newcommand{\VP}{\Cat{VP}}
+\newcommand{\AdjP}{\Cat{AdjP}}
+\newcommand{\AdvP}{\Cat{AdvP}}
+\newcommand{\PP}{\Cat{PP}}
+\newcommand{\DP}{\Cat{DP}}
+\newcommand{\Nom}{\Cat{Nom}}
+\newcommand{\Cl}{\Cat{Clause}}
+\newcommand{\Phrasal}{\mathrm{Phrasal}}
+\newcommand{\Lex}{\mathrm{Lex}}
+
+%% Defined-as ---------------------------------------------------------------
+\newcommand{\defas}{\mathrel{\equiv_{\mathrm{def}}}}
+
+%% Convenience -------------------------------------------------------------
+% \fol{(\forall x)[\Phrasal(x) \Rightarrow \ldots]} for inline FOL.
+\newcommand{\fol}[1]{\ensuremath{#1}}
+% Gloss after a defined predicate.
+\newcommand{\gloss}[1]{\textit{#1}}

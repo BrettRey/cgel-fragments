@@ -1,0 +1,77 @@
+% !TEX TS-program = xelatex
+% Fragment template. Copy this file to start a new fragment, then:
+%   1. Set \fragmentnumber, \fragmenttitle, \fragmentdate below the preamble.
+%   2. Replace the placeholder body.
+%   3. Build with `make 00-template` (or just `make`).
+
+\documentclass[11pt]{article}
+
+\input{../shared/preamble.tex}
+
+\renewcommand{\fragmentnumber}{Fragment 0}
+\renewcommand{\fragmenttitle}{Template: how a CGEL fragment is structured}
+\renewcommand{\fragmentdate}{2026-05-07}
+
+\begin{document}
+\fragmenthead
+
+\noindent
+A fragment in this series describes a CGEL phenomenon as a class of trees
+satisfying a formal specification, in the model-theoretic idiom of Rogers
+(1998), the GPSG tradition (Gazdar, Klein, Pullum \& Sag 1985), and Pullum's
+Edinburgh handouts. Each fragment is self-contained, two to four pages, and
+proceeds in roughly the same shape:
+
+\begin{enumerate}[label=(\arabic*),leftmargin=2em,itemsep=0.2em]
+  \item \textbf{Phenomenon.} A CGEL construction or constraint, with a
+        worked English example and the CGEL-style tree.
+  \item \textbf{Vocabulary.} The unary and binary predicates needed
+        beyond the shared ones in \texttt{shared/macros.tex}.
+  \item \textbf{Specification.} The defining formula(e) in FOL or wMSO
+        on trees, with glosses.
+  \item \textbf{Worked instance.} The example from (1) shown to satisfy
+        the specification.
+  \item \textbf{Open questions.} Where the formalism strains, what
+        richer logic might be needed, what coordination-style residues
+        (à la Gazdar 1981) remain.
+\end{enumerate}
+
+\section*{1.~Phenomenon}
+
+\textit{Stub.} Replace with the construction and an example. Use \texttt{\textbackslash ea}/\texttt{\textbackslash z} for numbered examples:
+
+\ea
+\textit{This}, I think she knew.
+\z
+
+\section*{2.~Vocabulary}
+
+\textit{Stub.} List any new predicates beyond \texttt{shared/macros.tex}.
+For instance:
+
+\ea
+$\Phrasal(x)$, $\NP(x)$, $\Hd(x,y)$, $\Cmp(x,y)$.
+\z
+
+\section*{3.~Specification}
+
+\textit{Stub.} Define predicates with $\defas$:
+
+\ea
+$\mathrm{Vacancy}(x) \defas \Phrasal(x) \wedge \neg(\exists y)[x \imdom y]$\\
+\gloss{a vacancy is a phrasal node with no children}
+\z
+
+\section*{4.~Worked instance}
+
+\textit{Stub.} Show the example tree satisfies the specification.
+
+\section*{5.~Open questions}
+
+\textit{Stub.} Coordination residue, gradience, lexical exceptions,
+adequacy of FOL vs.\ wMSO for the construction.
+
+% Uncomment when the fragment has citations.
+% \printbibliography[heading=subbibintoc,title={Select bibliography}]
+
+\end{document}

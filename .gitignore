@@ -1,0 +1,23 @@
+# LaTeX build artefacts
+*.aux
+*.log
+*.out
+*.toc
+*.bcf
+*.bbl
+*.blg
+*.run.xml
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Editor / OS noise
+.DS_Store
+*.swp
+*~
+
+# Build outputs (kept in pdfs/ for staging, copied into docs/fragments/ for the site)
+pdfs/
+
+# But DO commit docs/fragments/ for GitHub Pages.
+!docs/fragments/
