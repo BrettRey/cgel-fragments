@@ -9,7 +9,8 @@
 \renewcommand{\fragmentdate}{2026-05-07}
 
 \newcommand{\GenNP}{\Cat{GenNP}}
-\newcommand{\DetFiller}{\mathrm{DetFiller}}
+\newcommand{\SynDmr}{\mathrm{SynDeterminer}}
+\newcommand{\InterpAs}{\mathrm{InterpretsAs}}
 \newcommand{\FusedDetHead}{\mathrm{FusedDetHead}}
 \newcommand{\FusedDetHeadNP}{\mathrm{FusedDetHeadNP}}
 \newcommand{\CanonicalDetHeadNP}{\mathrm{CanonicalDetHeadNP}}
@@ -21,16 +22,16 @@
 This fragment tests the local end of the project: can a CGEL-style category /
 function distinction be stated as a small constraint on labelled trees? The
 target is the familiar contrast between an NP with separate daughters in
-Determiner and Head functions, and an NP in which one determiner-function
-phrase realizes both functions.
+Determiner and Head functions, and an NP in which one determiner realizes both
+functions.
 
 \section*{1.~Phenomenon}
 
 CGEL treats examples such as \mention{three}, \mention{some}, and
 \mention{many} in independent NP use as cases of fused determiner-heads. The
 fusion is stated over functions: the same daughter fills Determiner and Head.
-That daughter is not a bare determiner. In the ordinary simple cases it is a
-DP; in genitive cases it can be a genitive NP.
+The fused determiner is a DP in the ordinary simple cases; in genitive cases it
+can be a genitive NP.
 
 \ea\label{ex:fused-three} \textit{Pat invited two students; I invited three.}\z
 
@@ -38,29 +39,35 @@ DP; in genitive cases it can be a genitive NP.
 
 \ea\label{ex:fused-genitive} \textit{Kim's proposal was stronger than Pat's.}\z
 
-The descriptive problem is small but useful. In \mention{two students}, the
-DP \mention{two} fills the determiner function (Det), and the nominal
-\mention{students} fills Head. In independent \mention{three}, the relevant DP
-fills both functions. In \mention{Pat's}, a genitive NP does the same work.
-A fragment should therefore distinguish ordinary determiner-plus-Head NPs from
-fused determiner-head NPs without recasting the fused function pair as a
-lexical-category claim.
+The descriptive problem is small but useful. In \mention{two students},
+\mention{two} is the determiner, and the nominal \mention{students} fills Head.
+In independent \mention{three}, the determiner fills both functions. In
+\mention{Pat's}, the determiner is a genitive NP. A fragment should therefore
+distinguish ordinary determiner-plus-Head NPs from fused determiner-head NPs
+without recasting the fused function pair as either a lexical category claim or
+a semantic category claim.
 
 \section*{2.~Vocabulary}
 
 Use the shared relations $\imdom$ and $\dm$, and the function relations
-$\Hd$ and $\Det$. Add one local predicate for the phrase types that can fill
-Determiner function in this draft:
+$\Hd$ and $\Det$. Add one local syntactic predicate for determiners in this
+draft:
 
-\ea\label{ex:det-filler}
-$\DetFiller(x) \defas \DP(x) \vee \GenNP(x)$\\
-\gloss{$x$ is a DP or a genitive NP eligible for Determiner function}
+\ea\label{ex:determiner-predicate}
+$\SynDmr(x) \defas \DP(x) \vee \GenNP(x)$\\
+\gloss{$x$ is a syntactic determiner: a DP or a genitive NP in this draft}
 \z
 
 The predicate $\GenNP$ is intentionally provisional: a fuller fragment should
 say whether it is a feature-bearing subtype of $\NP$, a separate abbreviation,
 or a definable configuration. For now it keeps the category/function issue
 visible.
+
+No semantic predicate is introduced here. In particular, $\SynDmr(x)$ does not
+say that $x$ denotes a generalized quantifier, a choice function, a possessive
+relation, or any other semantic category. If a later fragment needs that
+bridge, it should add a separate interpretation relation, such as
+$\InterpAs(x,s)$, with explicit warrants.
 
 \section*{3.~Specification}
 
@@ -80,28 +87,28 @@ characterised as follows:
 $\begin{aligned}
 \CanonicalDetHeadNP(n) \defas {} & \NP(n) \wedge
   (\exists d)(\exists h)[n \imdom d \wedge n \imdom h \wedge d \neq h \\
-& \qquad {} \wedge \Det(n,d) \wedge \DetFiller(d)
+& \qquad {} \wedge \Det(n,d) \wedge \SynDmr(d)
   \wedge \Hd(n,h) \wedge \Nom(h)].
 \end{aligned}$\\
-\gloss{an NP with a determiner-function phrase and a distinct nominal Head}
+\gloss{an NP with a determiner and a distinct nominal Head}
 \z
 
 The fused determiner-head configuration is the corresponding case where one
-determiner-function phrase realizes both functions and no separate nominal Head
-daughter is present:
+determiner realizes both functions and no separate nominal Head daughter is
+present:
 
 \ea\label{ex:fused-det-head-np}
 $\begin{aligned}
 \FusedDetHeadNP(n) \defas {} & \NP(n) \wedge
-  (\exists d)[\DetFiller(d) \wedge \FusedDetHead(d,n) \\
+  (\exists d)[\SynDmr(d) \wedge \FusedDetHead(d,n) \\
 & \qquad {} \wedge
   \neg(\exists h)[n \imdom h \wedge h \neq d \wedge \Hd(n,h) \wedge \Nom(h)]].
 \end{aligned}$\\
-\gloss{an NP whose DP or genitive NP daughter is both Determiner and Head}
+\gloss{an NP whose determiner is both Determiner and Head}
 \z
 
 For simple cases such as \mention{three}, this is a first-order local
-definition. Partitive cases add one more daughter, but the fused element is
+definition. Partitive cases add one more daughter, but the fused determiner is
 still the DP in the fused function pair:
 
 \ea\label{ex:partitive-fused}
@@ -112,38 +119,43 @@ $\begin{aligned}
 \gloss{a fused determiner-head NP with an \mention{of}-PP complement}
 \z
 
-Nothing in the formula assigns the fused element to a lexical category. It says
-only that this tree has one daughter bearing two functions. In the ordinary
-cases that daughter is a DP.
+Nothing in the formula assigns the fused element to a semantic category. It
+says only that this tree has one daughter bearing two syntactic functions. In
+the ordinary cases that daughter is a DP.
 
 \section*{4.~Worked instance}
 
 Take \mention{I invited three}. Let $n$ be the object NP and $d$ the DP
-\mention{three}. The intended tree makes $d$ a determiner-function filler and
-gives $d$ both the Determiner and Head functions in $n$. There is no distinct
-nominal Head daughter, so $n$ satisfies $\FusedDetHeadNP(n)$.
+\mention{three}. The intended tree makes $d$ a determiner and gives $d$ both
+the Determiner and Head functions in $n$. There is no distinct nominal Head
+daughter, so $n$ satisfies $\FusedDetHeadNP(n)$.
 
 The contrast with \mention{two students} is immediate. In that NP, the
-DP \mention{two} fills $\Det(n,d)$, while the nominal \mention{students} fills
-$\Hd(n,h)$. That NP satisfies
+determiner \mention{two} fills $\Det(n,d)$, while the nominal
+\mention{students} fills $\Hd(n,h)$. That NP satisfies
 $\CanonicalDetHeadNP(n)$, not $\FusedDetHeadNP(n)$.
 
-The genitive case shows why the analysis cannot be stated as a lexical-category
+The genitive case shows why the analysis cannot be stated as a lexical category
 predicate. In \mention{Kim's proposal was stronger than Pat's}, the fused
 daughter in the second comparison is a genitive NP. It still fills the
-Determiner and Head functions together.
+Determiner and Head functions together. Any claim about its possessive
+semantics would be an additional bridge claim, not part of
+$\FusedDetHeadNP(n)$.
 
 \section*{5.~Open questions}
 
 \begin{enumerate}[label=(\alph*),leftmargin=2em,itemsep=0.25em]
-  \item The inventory behind $\DetFiller$ needs checking. DP and genitive NP
-        are included here because they expose the main category/function
-        contrast, but CGEL's full set of Determiner-function fillers may need
+  \item The inventory of syntactic determiner types needs checking. DP and
+        genitive NP are included here because they expose the main
+        category/function contrast, but CGEL's full set of determiners may need
         a richer definition.
+  \item Semantic bridges are deliberately absent. Claims about quantification,
+        comparison, partitivity, or possessive interpretation need separate
+        semantic vocabulary plus bridge conditions.
   \item Partitives probably require tighter treatment of the \mention{of}-PP:
         it is not just any complement PP.
-  \item The inventory of non-fused Determiner fillers should be kept separate
-        from the fused-function configuration unless the interaction is
+  \item The inventory of non-fused determiners should be kept separate from the
+        fused-function configuration unless the interaction is
         explicitly modelled.
   \item CGEL page references and the Payne--Huddleston--Pullum treatment of
         fused functions need to be checked before this becomes a citable
